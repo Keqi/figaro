@@ -62,7 +62,7 @@ module Figaro
       payload = ERB.new(File.read(path)).result
 
       result = if Gem::Version.new(Psych::VERSION) >= Gem::Version.new("4")
-        YAML.safe_load(payload, aliases: true)
+        YAML.safe_load(payload, aliases: true, permitted_classes: [Symbol])
       else
         YAML.load(payload)
       end
